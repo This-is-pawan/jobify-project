@@ -18,9 +18,9 @@ import ContextApi from "./components/ContextApi.jsx";
 
 createRoot(document.getElementById("root")).render(
   <ContextApi>
-    <StrictMode>
+    
       <App />
-    </StrictMode>
-    ,
+   
+    
   </ContextApi>
 );

@@ -9,9 +9,24 @@ export let Globalcontext = () => useContext(CreateContext);
 
 const ContextApi = ({ children }) => {
   const [userData, setUserData] = useState("user");
-
+const [getjob, setGetjob] = useState();
+// console.log(getjob);
+  const [isDarkTheme, setIsDarkTheme] = useState(() => {
+    return localStorage.getItem('Home_dark_theme') === 'true';
+  });
   useEffect(() => {
-     
+      document.body.classList.toggle('Home_dark_theme', isDarkTheme);
+    }, [isDarkTheme]);
+  
+    const toggleDarkTheme = () => {
+      const newDarkTheme = !isDarkTheme;
+      setIsDarkTheme(newDarkTheme);
+      localStorage.setItem('Home_dark_theme', newDarkTheme);
+      document.body.classList.toggle('Home_dark_theme', newDarkTheme);
+    };
+  
+  useEffect(() => {
+    
     dataHandler();
   }, []);
   const dataHandler = async () => {
@@ -21,7 +36,7 @@ const ContextApi = ({ children }) => {
       });
 
       const user = data?.userData?.name;
-      console.log(user);
+      // console.log(user);
 
       if (data.success) {
         setUserData(user);
@@ -33,11 +48,34 @@ const ContextApi = ({ children }) => {
     }
   };
 
+// const Getdatajob = async () => {
+//   try {
+//     const { data } = await axios.get('http://localhost:4000/api/v1/jobs', {
+//       withCredentials: true, // 👈 this is necessary for cookies to be sent
+//     });
+
+//     if (data.success) {
+//       setGetjob(data.data);
+//       toast.success(data.message);
+//     } else {
+//       setGetjob(null);
+//       toast.error(data.message);
+//     }
+//   } catch (error) {
+//     console.error(error);
+//     toast.error(error?.response?.data?.message || "Something went wrong");
+//   }
+// };
+
+
+
+
+
   return (
     <div>
       <CreateContext
         CreateContext
-        value={{ userData, setUserData, dataHandler }}
+        value={{ userData, setUserData, dataHandler ,isDarkTheme,setIsDarkTheme,toggleDarkTheme,getjob,setGetjob}}
       >
         {children}
       </CreateContext>

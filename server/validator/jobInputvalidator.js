@@ -2,7 +2,7 @@ const { body, param, validationResult } = require("express-validator");
 
 const validateJobInput = [
   body("company").trim().notEmpty().withMessage("missing company"),
-  body("position").trim().notEmpty().withMessage("missing position"),
+  body("jobPosition").trim().notEmpty().withMessage("missing position"),
   body("jobLocation").trim().notEmpty().withMessage("missing location"),
   body("jobStatus").trim().notEmpty().withMessage("missing status"),
   body("jobType").trim().notEmpty().withMessage("missing type"),

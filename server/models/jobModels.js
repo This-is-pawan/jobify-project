@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const JobSchema = new mongoose.Schema(
   {
     company: String,
-    position: String,
+    jobPosition: String,
     jobStatus: {
       type: String,
       enum: ["interview", "declined", "pending"],
