@@ -39,8 +39,8 @@ function Register() {
 
   return (
     <div className="w-full p-2 ">
-      <div className="w-96  p-4 rounded-xl bg-gray-700 grid justify-center shadow-xl m-auto relative top-10  ">
-        <div className="  w-full flex justify-center p-4 items-center  ">
+      <div className="w-[90%] max-w-96 p-4 rounded-xl bg-gray-700 grid justify-center shadow-xl m-auto relative top-10  ">
+        <div className="  w-full flex justify-center  items-center   ">
           <article className=" w-10  rounded bg-pink-300 text-center text-3xl font-bold text-blue-900 cursor-pointer  ">
             <Link to="/">J</Link>
           </article>{" "}
