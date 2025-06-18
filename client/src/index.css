@@ -1,0 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: "Outfit", sans-serif;
+  user-select: none;
+  /* transition: all 3s; */
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body.dark_theme {
+  background: rgb(202, 195, 209);
+  transition: all 500ms ease;
+}
