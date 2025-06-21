@@ -63,9 +63,9 @@ const port = process.env.PORT || 5000;
 server.get("/", (req, res) => {
   res.json("home api is ready");
 });
-// server.get('/api/test/proxy', (req, res) => {
-//   res.json({ name: 'sham', msg: 'proxy is ready' });
-// });
+server.get('/api/test/proxy', (req, res) => {
+  res.json({ name: 'sham', msg: 'proxy is ready' });
+});
 // vallidation in  nodejs libaray with express
 
 //##################
