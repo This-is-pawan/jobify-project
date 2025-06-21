@@ -14,6 +14,7 @@ import {
   AllJob,
   Profile,
   Admin,
+  EditJob,
 } from "./pages/index";
 import Logout from "./pages/Logout";
 
@@ -56,7 +57,10 @@ const router = createBrowserRouter([
             path: "profile",
             element: <Profile />,
           },
-          
+           {
+      path: "edit-job/:id", 
+      element: <EditJob />,
+    },
         ],
       },
     ],

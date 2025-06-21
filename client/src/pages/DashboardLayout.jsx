@@ -6,6 +6,7 @@ import axios from 'axios';
 const DashboardContext = createContext();
 
 const DashboardLayout = () => {
+
   const user = { name: 'john' };
   const [showSidebar, setShowSidebar] = useState(false);
   const [isDarkTheme, setIsDarkTheme] = useState(() => {
@@ -28,26 +29,19 @@ const DashboardLayout = () => {
     setShowSidebar(!showSidebar);
   };
 
-  
+  // delete
+ 
+  // 
 const Getdatajob = async () => {
+  axios.defaults.withCredentials=true
   try {
     const { data } = await axios.get('http://localhost:3000/api/v1/jobs', {
       withCredentials: true, 
     },
-   
+    
   );
-// 
-const createdAt = data.AllJobs.map((item)=>item.createdAt);
-console.log(createdAt.join(''));
-const num=Number.parseInt(createdAt)
-if (createdAt) {
-  const dateObj = new Date(num);
-  const month = dateObj.toLocaleString('default', { month: 'long' }); 
-    const date = dateObj.getDate(); 
-  const year = dateObj.getFullYear(); 
-  console.log(`${month} ${year} ${date}`);
-}
-// 
+
+
     if (data.success) {
       setGetjob(data.AllJobs);
    

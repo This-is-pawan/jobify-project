@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 let CreateContext = createContext();
@@ -10,7 +10,9 @@ export let Globalcontext = () => useContext(CreateContext);
 const ContextApi = ({ children }) => {
   const [userData, setUserData] = useState("user");
 const [getjob, setGetjob] = useState();
-// console.log(getjob);
+const [profileData, setProfileData] = useState();
+const [profile, setProfile] = useState('');
+// console.log(profile);
   const [isDarkTheme, setIsDarkTheme] = useState(() => {
     return localStorage.getItem('Home_dark_theme') === 'true';
   });
@@ -26,7 +28,7 @@ const [getjob, setGetjob] = useState();
     };
   
   useEffect(() => {
-    
+    Profiledata()
     dataHandler();
   }, []);
   const dataHandler = async () => {
@@ -34,12 +36,15 @@ const [getjob, setGetjob] = useState();
       const { data } = await axios.get("http://localhost:3000/api/user/data", {
         withCredentials: true,
       });
+      // console.log(data);
+      
 
       const user = data?.userData?.name;
-      // console.log(user);
+      
 
       if (data.success) {
         setUserData(user);
+        setProfileData(data)
       } else {
         setUserData("");
       }
@@ -48,24 +53,26 @@ const [getjob, setGetjob] = useState();
     }
   };
 
-// const Getdatajob = async () => {
-//   try {
-//     const { data } = await axios.get('http://localhost:4000/api/v1/jobs', {
-//       withCredentials: true, // 👈 this is necessary for cookies to be sent
-//     });
+const Profiledata = async () => {
+  axios.defaults.withCredentials=true
+  try {
+    const { data } = await axios.get('http://localhost:3000/api/user/profile-data', {
+      withCredentials: true, 
+    });
+// console.log(data);
 
-//     if (data.success) {
-//       setGetjob(data.data);
-//       toast.success(data.message);
-//     } else {
-//       setGetjob(null);
-//       toast.error(data.message);
-//     }
-//   } catch (error) {
-//     console.error(error);
-//     toast.error(error?.response?.data?.message || "Something went wrong");
-//   }
-// };
+    if (data.success) {
+      setProfile(data?.user?.photo)
+      toast.success(data.message);
+    } else {
+      
+      toast.error(data.message);
+    }
+  } catch (error) {
+    console.error(error);
+    toast.error(error?.response?.data?.message || "Something went wrong");
+  }
+};
 
 
 
@@ -75,7 +82,7 @@ const [getjob, setGetjob] = useState();
     <div>
       <CreateContext
         CreateContext
-        value={{ userData, setUserData, dataHandler ,isDarkTheme,setIsDarkTheme,toggleDarkTheme,getjob,setGetjob}}
+        value={{ userData, setUserData, dataHandler ,isDarkTheme,setIsDarkTheme,toggleDarkTheme,getjob,setGetjob,profileData,Profiledata,profile}}
       >
         {children}
       </CreateContext>

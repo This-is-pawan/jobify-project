@@ -4,12 +4,12 @@ import { Link, useLocation } from 'react-router-dom';
 import links from '../utils/Links';
 
 const BigSidebar = () => {
-  const { showSidebar } = useDashboardContext();
+  const { showSidebar,isDarkTheme } = useDashboardContext();
   const location = useLocation();
 
   return (
     <div
-      className={` h-full bg-gray-700 text-white transition-all duration-300 ${
+      className={` h-full ${isDarkTheme?"bg-gray-700":"bg-pink-50"}  transition-all duration-300 ${
         showSidebar ? 'w-64' : 'w-0 overflow-hidden'
       }`}
     >

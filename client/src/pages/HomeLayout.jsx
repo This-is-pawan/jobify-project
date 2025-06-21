@@ -4,12 +4,12 @@ import { Globalcontext } from '../components/ContextApi'
 import { IoIosSunny } from "react-icons/io";
 import { IoMoon } from "react-icons/io5";
 const HomeLayout = () => {
-  const {isDarkTheme,toggleDarkTheme}=Globalcontext()
+  // const {toggleDarkTheme}=Globalcontext()
   // console.log(isDarkTheme);
   
   return (
     <div className='w-full h-screen'>
-   <div className='' onClick={toggleDarkTheme}>
+   <div className=''>
       <Outlet/>
      
    </div>

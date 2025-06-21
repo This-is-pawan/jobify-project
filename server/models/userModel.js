@@ -16,6 +16,9 @@ const UserSchema = new mongoose.Schema({
     enum: ["user", "admin"],
     default: "user",
   },
+  photo: {
+    type: String,
+  },
  
 });
 const User = mongoose.model("auths", UserSchema);

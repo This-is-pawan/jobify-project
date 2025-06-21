@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FaUserCircle, FaSortDown } from "react-icons/fa";
-import { useDashboardContext } from "../pages/DashboardLayout";
+// import { useDashboardContext } from "../pages/DashboardLayout";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -11,13 +11,16 @@ const Logout = () => {
   const [showLogout, setShowLogout] = useState(false);
 
   // const { user } = useDashboardContext();
-  const { userData } = Globalcontext();
+  const { userData ,profile} = Globalcontext();
+
 
   const LogoutHandler = async (e) => {
+   axios.defaults.withCredentials = true;
+
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        "http://localhost:3000/api/v1/auth/logout"
+        "http://localhost:3000/api/v1/auth/logout",{credentials: 'include'}
       );
       if (data.success) {
         toast.success(data.message);
@@ -36,7 +39,11 @@ const Logout = () => {
         className="w-full p-3 flex justify-around items-center bg-slate-400 text-white rounded-xl"
         onClick={() => setShowLogout(!showLogout)}
       >
-        <FaUserCircle />
+      {profile
+  ? <img src={`http://localhost:3000${profile}`} alt={profile} title={profile} className="w-5 h-5 rounded-full" />
+  : <FaUserCircle className="w-5 h-5"  />
+}
+
         {userData}
         <FaSortDown className="text-sm" />
       </button>

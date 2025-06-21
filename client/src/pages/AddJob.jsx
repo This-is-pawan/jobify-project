@@ -17,6 +17,7 @@ const AddJob = () => {
   const [jobType, setJobType] = useState("part-time");
   const AddJobHandle = async (e) => {
     e.preventDefault();
+    axios.defaults.withCredentials=true
     const job = {
       jobPosition,
       company,
@@ -31,7 +32,7 @@ const AddJob = () => {
         job,
         { withCredentials: true }
       );
-      console.log(data);
+      // console.log(data);
       if (data.success) {
         toast.success(data.message);
         Getdatajob();
@@ -46,7 +47,7 @@ const AddJob = () => {
 
   return (
     <div className="w-full h-[80vh] flex items-start justify-center p-4  ">
-      <div className="w-full max-w-5xl  shadow-xl rounded-2xl p-8 bg-white">
+      <div className="w-full max-w-5xl  shadow-xl rounded-2xl p-8 bg-white xl:relative top-[7rem]">
         <h1 className="text-4xl font-bold text-center mb-8 text-gray-800 ">
           Add Job
         </h1>

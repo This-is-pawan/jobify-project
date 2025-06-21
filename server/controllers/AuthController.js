@@ -75,21 +75,22 @@ exports.login = async (req, res) => {
   }
 };
 
-exports.logout = async (req, res) => {
+exports.logout = (req, res) => {
   res.clearCookie("token", {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: process.env.NODE_ENV === "production" ? "none" : "strict",
   });
-  res.json({ success: true, message: "Logout Successfully" });
+  return res.json({ success: true, message: "Logout Successfully" });
 };
+
 
 exports.UserData = async (req, res) => {
   const id = req.userId;
 
   try {
     const user = await User.findById(id);
-    // console.log(user);
+    console.log(user);
     if (!user) {
       return res.status(404).json({ msg: `No user with id ${id}` });
     }
@@ -103,5 +104,53 @@ exports.UserData = async (req, res) => {
     });
   } catch (error) {
     res.status(500).json({ msg: "Server error", error: error.message });
+  }
+};
+
+exports.uploadimg = async (req, res) => {
+  const { name, email } = req.body;
+  const photopath = req.file ? `/uploads/${req.file.filename}` : null;
+
+  if (!name || !email || !photopath) {
+    return res.json({
+      success: false,
+      message: "Missing name, email, or photo",
+    });
+  }
+
+  try {
+    const exist = await User.findOne({ email, name });
+
+    if (!exist) {
+      return res.json({
+        success: false,
+        message: "User does not exist. Please login first.",
+      });
+    }
+
+    exist.photo = photopath;
+    await exist.save();
+
+    res.json({
+      success: true,
+      message: "Photo updated successfully",
+      user: exist,
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+exports.profileData =  async (req, res) => {
+  const userId = req.userId;
+  console.log("UserID from middleware:", userId);
+
+  try {
+    const user = await User.findById(userId);
+    if (!user) return res.status(404).json({ success: false, message: "User not found" });
+
+    res.json({ success: true, user });
+  } catch (err) {
+    res.status(500).json({ success: false, message: "Server error" });
   }
 };

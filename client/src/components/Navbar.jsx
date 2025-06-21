@@ -1,17 +1,17 @@
 import React from "react";
 import { FaAlignLeft } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import DashboardLayout, { useDashboardContext } from "../pages/DashboardLayout";
+import  { useDashboardContext } from "../pages/DashboardLayout";
 import Logout from "../pages/Logout";
 import ThemeToggle from "./ThemeToggle";
 
 
 const Navbar = () => {
-  const {toggleSideBar}=useDashboardContext(DashboardLayout) 
-  // const {isDarkTheme}=useDashboardContext()
+  const {toggleSideBar,isDarkTheme}=useDashboardContext() 
+ 
   
   return (
-    <div className={`w-full flex justify-around items-center bg-gray-700   h-28`}>
+    <div className={`w-full flex justify-around items-center ${isDarkTheme?"bg-gray-700":"bg-pink-50"} bg-gray-700 h-28 xl:fixed top-0 z-10`}>
      
         <button type="button" className="text-3xl p-1 cursor-pointer">
           <FaAlignLeft  onClick={toggleSideBar} />
@@ -26,8 +26,10 @@ const Navbar = () => {
           Jobify
         </h1>
       </div>
+      <div className="flex justify-center items-center xl:relative right-[20rem]">
       <ThemeToggle/>
       <div><Logout/></div>
+      </div>
     </div>
   );
 };

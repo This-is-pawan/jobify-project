@@ -51,6 +51,7 @@ exports.createJob = async (req, res) => {
        jobLocation,
        jobStatus,
        jobType,
+    
     });
 
     if (!job) {
@@ -75,11 +76,21 @@ exports.getJob = async (req, res) => {
 };
 // update
 exports.update = async (req, res) => {
+ 
+  
   const { company, jobPosition,  jobLocation,  jobStatus,  jobType } = req.body;
   if (!company || !jobPosition || ! jobLocation || ! jobStatus || ! jobType) {
     return res.json({ msg: "please company and jobPosition" });
   }
   const { id } = req.params;
+
+ if (req.file) {
+      req.body.avatar = `/uploads/${req.file.filename}`;
+      req.body.avatarPublicId = req.file.filename;
+    }
+
+
+
   const job = await jobs.findByIdAndUpdate(id, req.body, { new: true });
 
   if (!job) {
@@ -94,10 +105,11 @@ exports.deleted = async (req, res) => {
   const job = await jobs.findByIdAndDelete(id);
 
   if (!job) {
-    return res.status(404).json({ msg: `No job with id ${id}` });
+    return res.status(404).json({success:false, msg: `No job with id ${id}` });
   }
 
   res.json({
+    success:true,
     msg: "Job deleted successfully",
     data: job,
   });
