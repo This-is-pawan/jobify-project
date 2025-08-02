@@ -25,7 +25,6 @@ server.use(
 );
 
 // const __dirname/ = path.resolve(); // Needed if using ES module
-
 // Serve static files
 server.use("/uploads", express.static(path.join(__dirname, "public/uploads")));
 
