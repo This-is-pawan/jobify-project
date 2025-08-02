@@ -14,12 +14,9 @@ const path = require("path");
 // const jobs = require("./models/jobModels");
 // const User = require("./models/userModel");
 const { uploadimg, profileData } = require("./controllers/AuthController");
-
 require("./db/mongodb");
-
 server.use(express.json());
 server.use(cookieParser());
-
 server.use(
   cors({
     origin: "http://localhost:5173",
