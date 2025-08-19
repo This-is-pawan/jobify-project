@@ -31,6 +31,7 @@ server.use(
 
 // Serve static files
 server.use("/uploads", express.static(path.join(__dirname, "public/uploads")));
+// console.log(server.use("/uploads", express.static(path.join(__dirname, "public/uploads"))));
 
 // Ensure uploads folder exists
 const uploadPath = path.join(__dirname, "public/uploads");
