@@ -20,7 +20,7 @@ const Logout = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        "http://localhost:3000/api/v1/auth/logout",{credentials: 'include'}
+        "https://jobify-project-zxis.onrender.com/api/v1/auth/logout",{credentials: 'include'}
       );
       if (data.success) {
         toast.success(data.message);
