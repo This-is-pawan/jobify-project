@@ -35,7 +35,7 @@ const DashboardLayout = () => {
 const Getdatajob = async () => {
   axios.defaults.withCredentials=true
   try {
-    const { data } = await axios.get('http://localhost:3000/api/v1/jobs', {
+    const { data } = await axios.get('https://jobify-project-zxis.onrender.com/api/v1/jobs",/api/v1/jobs', {
       withCredentials: true, 
     },
     
