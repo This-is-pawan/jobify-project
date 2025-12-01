@@ -27,7 +27,7 @@ const Profile = () => {
 
   try {
     const { data } = await axios.post(
-      `http://localhost:3000/profile-upload`,
+      `https://jobify-project-zxis.onrender.com/profile-upload`,
       formData,
       {
         withCredentials: true,
