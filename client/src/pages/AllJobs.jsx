@@ -12,7 +12,7 @@ const AllJobs = () => {
 
   const handleDelete = async (id) => {
     try {
-      const { data } = await axios.delete(`http://localhost:3000/api/v1/jobs/${id}`, {
+      const { data } = await axios.delete(`https://jobify-project-zxis.onrender.com/api/v1/jobs",/api/v1/jobs/${id}`, {
         withCredentials: true,
       });
       // console.log(data);
