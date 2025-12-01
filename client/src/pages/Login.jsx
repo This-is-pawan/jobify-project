@@ -15,7 +15,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        "http://localhost:3000/api/v1/auth/login",
+        "https://jobify-project-zxis.onrender.com/api/v1/auth/login",
         { name, password, email, location },
         { withCredentials: true }
       );
