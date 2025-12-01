@@ -17,7 +17,7 @@ function Register() {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        "http://localhost:3000/api/v1/auth/register",
+        "https://jobify-project-zxis.onrender.com/api/v1/auth/register",
         { name, lastName, password, email, location },
         { withCredentials: true }
       );
