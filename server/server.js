@@ -19,7 +19,7 @@ require("./db/mongodb");
 
 server.use(express.json());
 server.use(cookieParser());
-app.use(express.urlencoded({ extended: true }));
+
 
 server.use(
   cors({
