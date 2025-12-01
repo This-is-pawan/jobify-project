@@ -22,7 +22,7 @@ server.use(cookieParser());
 
 server.use(
   cors({
-    origin: "https://jobify-frontend-k519.onrender.com/",
+    origin: "https://jobify-frontend-k519.onrender.com",
     credentials: true,
   })
 );
