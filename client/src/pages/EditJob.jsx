@@ -25,7 +25,7 @@ const Editjob = () => {
       if (!id) return toast.error("Job ID not found!");
 
       const { data } = await axios.patch(
-        `http://localhost:3000/api/v1/jobs/${id}`,
+        `https://jobify-project-zxis.onrender.com/api/v1/jobs/${id}`,
         {
           jobLocation,
           company,
