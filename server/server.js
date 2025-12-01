@@ -19,6 +19,7 @@ require("./db/mongodb");
 
 server.use(express.json());
 server.use(cookieParser());
+app.use(express.urlencoded({ extended: true }));
 
 server.use(
   cors({
@@ -55,9 +56,6 @@ const upload = multer({ storage });
 server.post("/profile-upload", upload.single("photo"), uploadimg);
 // server.get("/profile-data", authenticateUser, profileData);
 
-if (process.env.NODE_ENV === "development") {
-  server.use(morgan("dev"));
-}
 
 const port = process.env.PORT || 5000;
 
