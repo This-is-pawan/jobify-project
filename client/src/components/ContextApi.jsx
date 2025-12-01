@@ -33,7 +33,7 @@ const [profile, setProfile] = useState('');
   }, []);
   const dataHandler = async () => {
     try {
-      const { data } = await axios.get("http://localhost:3000/api/user/data", {
+      const { data } = await axios.get("https://jobify-project-zxis.onrender.com/api/user/data", {
         withCredentials: true,
       });
       // console.log(data);
@@ -56,7 +56,7 @@ const [profile, setProfile] = useState('');
 const Profiledata = async () => {
   axios.defaults.withCredentials=true
   try {
-    const { data } = await axios.get('http://localhost:3000/api/user/profile-data', {
+    const { data } = await axios.get('https://jobify-project-zxis.onrender.com/api/user/profile-data', {
       withCredentials: true, 
     });
 // console.log(data);
