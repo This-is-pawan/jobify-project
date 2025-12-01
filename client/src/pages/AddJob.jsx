@@ -28,7 +28,7 @@ const AddJob = () => {
 
     try {
       const { data } = await axios.post(
-        "http://localhost:3000/api/v1/jobs",
+        "https://jobify-project-zxis.onrender.com/api/v1/jobs",
         job,
         { withCredentials: true }
       );
